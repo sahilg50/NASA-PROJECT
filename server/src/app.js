@@ -9,12 +9,15 @@ launchesRouter;
 
 const app = express();
 
-var whitelist = ['http://localhost:3000'];
+var whitelist = ['http://localhost:5000/', 'http://localhost:5000'];
 app.use(
 	cors({
 		origin: function (origin, callback) {
 			if (whitelist.indexOf(origin) != -1 || !origin) callback(null, true);
-			else callback(new Error('Not allowed by cors'));
+			else {
+				console.log(`ERROR!!: ${origin}`);
+				callback(new Error('Not allowed by cors'));
+			}
 		},
 	})
 );
